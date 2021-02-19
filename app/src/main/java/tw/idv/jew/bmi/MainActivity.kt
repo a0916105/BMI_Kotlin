@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_main)
         setContentView(binding.root)
 
+        Log.d("MainActivity", "onCreate")
+
         binding.bHelp.setOnClickListener {
             AlertDialog.Builder(this)
                     .setTitle("BMI說明")
@@ -57,5 +59,35 @@ class MainActivity : AppCompatActivity() {
             putExtras(bag)
             startActivity(this)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("MainActivity", "onStart")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("MainActivity", "onRestart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("MainActivity", "onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("MainActivity", "onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("MainActivity", "onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("MainActivity", "onDestroy")
     }
 }
