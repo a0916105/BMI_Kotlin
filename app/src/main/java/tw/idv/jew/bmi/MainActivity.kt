@@ -1,5 +1,6 @@
 package tw.idv.jew.bmi
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             AlertDialog.Builder(this)
                     .setTitle("BMI說明")
                     .setMessage("體重(kg)/身高的平方(m)")
-                    .setPositiveButton("OK", null)
+                    .setPositiveButton(getString(R.string.ok), null)
                     .show()
         }
     }
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         val bmi = weight / (height * height)
         Log.d("BMI", bmi.toString())
 
-        Toast.makeText(this, bmi.toString(), Toast.LENGTH_LONG).show()
+        /*Toast.makeText(this, bmi.toString(), Toast.LENGTH_LONG).show()
 
         //產生Builder物件
         AlertDialog.Builder(this)
@@ -44,6 +45,17 @@ class MainActivity : AppCompatActivity() {
                 .setPositiveButton(getString(R.string.ok), null)
                 .setNeutralButton(getString(R.string.cancel), null)
                 //顯示對話框
-                .show()
+                .show()*/
+        /*val intent = Intent(this, ResultActivity::class.java)
+        intent.putExtra("BMI_EXTRA", bmi)
+        startActivity(intent)*/
+        Intent(this, ResultActivity::class.java).apply {
+            val bag = Bundle()
+//            putExtra("BMI_EXTRA", bmi)
+            bag.putFloat(getString(R.string.BMI_EXTRA), bmi)
+            bag.putString("TEST_EXTRA", "Testing")
+            putExtras(bag)
+            startActivity(this)
+        }
     }
 }
